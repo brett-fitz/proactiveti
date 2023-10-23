@@ -37,4 +37,5 @@ Proactive Threat Intelligence vs Reactive Threat Intelligence
 * [Peeking at Reaper’s surveillance operations](https://blog.sekoia.io/peeking-at-reaper-surveillance-operations-against-north-korea-defectors/)
 * [Command & Control infrastructures tracked by Sekoia.io in 2022](https://blog.sekoia.io/command-control-infrastructures-tracked-by-sekoia-io-in-2022/)
 * [New RisePro Stealer distributed by the prominent PrivateLoader](https://blog.sekoia.io/new-risepro-stealer-distributed-by-the-prominent-privateloader/)
+* [Darkcomet Hacking the hacker](https://www.techanarchy.net/darkcomet-hacking-the-hacker/)
 * [BlueDelta Exploits Ukrainian Government Roundcube Mail Servers to Support Espionage Activities](https://go.recordedfuture.com/hubfs/reports/cta-2023-0620.pdf)
