@@ -1,0 +1,46 @@
+# Example: https://github.com/squidfunk/mkdocs-material/blob/master/mkdocs.yml
+
+# project info
+site_name: pycli
+site_url: https://pycli.repos.brettfitz.me/dev/
+site_author: Brett Fitzpatrick
+
+# repository
+repo_name: brett-fitz/pycli
+repo_url: https://github.com/brett-fitz/python-cli/
+
+# config
+theme:
+  logo: img/logo.png
+  favicon: img/logo.png
+  name: material
+  features:
+    - navigation.tabs
+    - navigation.tabs.sticky
+    - navigation.sections
+
+# plugins
+plugins:
+  - search
+  - mkdocstrings
+  - table-reader
+  - minify:
+      minify_html: true
+
+# extensions
+markdown_extensions:
+  - attr_list
+  - admonition
+  - pymdownx.details
+  - pymdownx.emoji:
+      emoji_index: !!python/name:materialx.emoji.twemoji
+      emoji_generator: !!python/name:materialx.emoji.to_svg
+  - pymdownx.superfences
+  - pymdownx.tabbed:
+      alternate_style: true 
+
+# navigation
+nav:
+  - Home: index.md
+  - Setup: setup.md
+  - Overview: overview.md

@@ -1,0 +1,79 @@
+# Optional Docs deployed in AWS and served via APIGW + S3 Proxy
+
+service: pycli-docs
+
+
+provider:
+  name: aws                                         # cloud
+  profile: default                                  # default aws profile to use for auth when deploy
+  region: ${opt:region, 'us-east-1'}                # default region
+  stage: ${opt:stage, 'dev'}                        # default stage
+  stackName: pycli-docs-${opt:stage, 'dev'}         # CloudFormation stack name
+  
+  apiName: pycli-docs-${opt:stage, 'dev'}            # API Gateway
+  endpointType: regional                             # Endpoint type for API Gateway REST API
+  apiGateway:
+    disableDefaultEndpoint: true
+    binaryMediaTypes:
+      - '*/*'
+    # For internal documentation example: add a resource policy to only allow specific IPs
+    resourcePolicy:
+      - Effect: Allow
+        Principal: '*'
+        Action: execute-api:Invoke
+        Resource: 
+          - execute-api:/*
+        Condition:
+          IpAddress:
+            aws:SourceIp:
+              - '1.1.1.1/32'
+  tags:                                             # optional CloudFormation tags to apply to APIs and functions
+    Team: My Awesome Team
+    Project: pycli
+  
+  stackTags:                                        # optional CloudFormation tags to apply to the stackParameters:
+    Description: Pycli static documentation site.
+
+
+resources:
+  
+  Resources:
+    
+    S3Bucket:
+      Type: 'AWS::S3::Bucket'
+      DeletionPolicy: Retain
+      Properties:
+        BucketName: repos-${self:provider.stackName}
+        PublicAccessBlockConfiguration:
+          # Access is only granted via the APIGW S3 proxy
+          BlockPublicAcls: true
+          BlockPublicPolicy: true
+          IgnorePublicAcls: true
+          RestrictPublicBuckets: true
+
+
+custom:
+  
+  customDomain:
+    # docs: https://github.com/amplify-education/serverless-domain-manager
+    domainName: pycli.repos.brettfitz.me
+    apiType: rest
+    stage: ${self:provider.stage}
+    basePath: ${self:provider.stage}
+    endpointType: 'regional'
+    securityPolicy: tls_1_2
+    hostedZoneId: <ZONE ID HERE>
+    createRoute53Record: true
+  
+  apiGatewayServiceProxies:
+    - s3:
+        path: /{proxy+}
+        method: get
+        action: GetObject
+        bucket: repos-${self:provider.stackName}
+        key:
+          pathParam: proxy
+
+plugins:
+  - serverless-apigateway-service-proxy
+  - serverless-domain-manager

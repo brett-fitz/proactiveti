@@ -1,0 +1,58 @@
+name: 'CI: Pytest + Coverage'
+
+on:
+  # manual trigger
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - 'pycli/**'
+      - 'tests/**'
+      - 'poetry.lock'
+      - 'pyproject.toml'
+  pull_request:
+    branches:
+      - main
+    paths:
+      - 'pycli/**'
+      - 'tests/**'
+      - 'poetry.lock'
+      - 'pyproject.toml'
+
+jobs:
+  # Build
+  python-test:
+    name: pytest
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ ubuntu-latest ]
+        python: ["3.9", "3.10", "3.11", "3.12"]
+    steps:
+      - name: Clone repository
+        uses: actions/checkout@v4
+
+      - name: Install Poetry
+        run: pipx install poetry
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: ${{ matrix.python }}
+          architecture: x64
+          cache: poetry
+
+      - name: Install pycli
+        run: poetry install --no-interaction --no-ansi
+
+      # Commented out for template
+      #
+      # - name: Run Tests
+      #   run: poetry run pytest --cov pycli
+
+      # - name: Upload coverage reports to Codecov
+      #   uses: codecov/codecov-action@v3
+      #   env: 
+      #     CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
+      #   if: ${{ matrix.os == 'ubuntu-latest' && matrix.python == 3.9 }}
