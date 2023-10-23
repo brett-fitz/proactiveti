@@ -1,4 +1,4 @@
-"""pycli.cli module: cli"""
+"""proactiveti.cli module: cli"""
 import asyncio
 from functools import wraps
 import logging

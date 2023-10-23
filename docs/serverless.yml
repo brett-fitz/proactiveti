@@ -1,6 +1,6 @@
 # Optional Docs deployed in AWS and served via APIGW + S3 Proxy
 
-service: pycli-docs
+service: proactiveti-docs
 
 
 provider:
@@ -8,9 +8,9 @@ provider:
   profile: default                                  # default aws profile to use for auth when deploy
   region: ${opt:region, 'us-east-1'}                # default region
   stage: ${opt:stage, 'dev'}                        # default stage
-  stackName: pycli-docs-${opt:stage, 'dev'}         # CloudFormation stack name
+  stackName: proactiveti-docs-${opt:stage, 'dev'}         # CloudFormation stack name
   
-  apiName: pycli-docs-${opt:stage, 'dev'}            # API Gateway
+  apiName: proactiveti-docs-${opt:stage, 'dev'}            # API Gateway
   endpointType: regional                             # Endpoint type for API Gateway REST API
   apiGateway:
     disableDefaultEndpoint: true
@@ -29,10 +29,10 @@ provider:
               - '1.1.1.1/32'
   tags:                                             # optional CloudFormation tags to apply to APIs and functions
     Team: My Awesome Team
-    Project: pycli
+    Project: proactiveti
   
   stackTags:                                        # optional CloudFormation tags to apply to the stackParameters:
-    Description: Pycli static documentation site.
+    Description: proactiveti static documentation site.
 
 
 resources:
@@ -56,7 +56,7 @@ custom:
   
   customDomain:
     # docs: https://github.com/amplify-education/serverless-domain-manager
-    domainName: pycli.repos.brettfitz.me
+    domainName: proactiveti.repos.brettfitz.me
     apiType: rest
     stage: ${self:provider.stage}
     basePath: ${self:provider.stage}

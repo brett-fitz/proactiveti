@@ -1,2 +1,0 @@
-"""pycli.cli module"""
-

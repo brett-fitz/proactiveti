@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "pycli"
+name = "proactiveti"
 version = "0.1.0"
 description = "Python CLI Template"
 authors = ["Brett Fitzpatrick"]
@@ -29,7 +29,7 @@ mkdocs-minify-plugin = "^0.7.1"
 mkdocs-table-reader-plugin = "^2.0.3"
 
 [tool.poetry.scripts]
-pycli = "pycli.cli.cli:cli"
+proactiveti = "proactiveti.cli.cli:cli"
 
 [build-system]
 requires = ["poetry-core"]

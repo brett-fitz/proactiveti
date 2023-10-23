@@ -3,14 +3,14 @@
 Clone the repo
 
 ```shell
-git clone git@github.com:brett-fitz/python-cli.git
+git clone git@github.com:brett-fitz/proactiveti.git
 ```
 
-Install the pycli package and CLI
+Install the proactiveti package and CLI
 
 === "General"
 
-    Install pycli
+    Install proactiveti
 
     ```shell
     poetry install
@@ -24,17 +24,17 @@ Install the pycli package and CLI
     poetry env use 3.11
     ```
 
-    Install pycli
+    Install proactiveti
 
     ```shell
     poetry install
     ```
 
-Run `pycli`
+Run `proactiveti`
 
 ```shell
-❯ poetry run pycli 
-Usage: pycli [OPTIONS] COMMAND [ARGS]...
+❯ poetry run proactiveti 
+Usage: proactiveti [OPTIONS] COMMAND [ARGS]...
 
   Python CLI Core
 
