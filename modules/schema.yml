@@ -1,0 +1,74 @@
+# Lead Module Schema
+# Note: Please refer to the docs for a detailed explanation of each field and its usage.
+
+
+# Module Meta
+name: str(min=1, max=256, required=True)
+author: str(required=True)
+description: str(required=True)
+references: list(str(), required=False)
+version: num(required=True)
+tags: list(str(), required=False)
+
+
+# Service Meta
+service:
+  name: str(required=True)
+  version: str(required=False)
+
+confidence: str(required=True)
+false_postives: str(required=False)
+
+
+# Threat Meta (threat services)
+threat: include('threat_meta', required=False)
+
+
+# Provider
+provider:
+  # Note: Please check the docs for the current list of supported providers!
+  name: enum('binaryedge', 'censys', 'driftnet', 'shodan', 'urlscan', required=True)
+  query: subset(map(), str())
+
+  binaryedge: include('provider_binaryedge', required=False)
+  censys: include('provider_censys', required=False)
+  driftnet: include('provider_driftnet', required=False)
+  shodan: include('provider_shodan', required=False)
+  urlscan: include('provider_urlscan', required=False)
+
+---
+# Providers
+censys:
+  # observable types to acquire
+  ip: bool(required=False)                # default: true
+  reverse_dns: bool(required=False)       # default: false
+  tls_certificate: bool(required=False)   # default: false
+
+shodan:
+  ip: bool(required=False)                # default: true
+  hostnames: bool(required=False)         # default: true
+
+urlscan:
+  task.url: bool(required=False)          # default: true
+  task.hostname: bool(required=False)     # default: false
+
+
+# Threat Meta object - ECS compliant
+# REF: https://www.elastic.co/guide/en/ecs/current/ecs-threat.html
+threat_meta:
+  # MITRE Group
+  group: include('group_meta', required=False)
+
+  # MITRE Software
+  software:
+    name: str(required=True)
+    id: str(required=False)
+    reference: str(required=False)
+    type: enum('TOOL', 'MALWARE', required=False)
+
+
+group_meta:
+  id: str(required=True)
+  name: str(required=True)
+  reference: str(required=True)
+  alias: list(str(), required=True)
