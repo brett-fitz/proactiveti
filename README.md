@@ -1,4 +1,4 @@
-# proactiveti
+# :bow_and_arrow: proactiveti
 
 [![License](https://img.shields.io/github/license/brett-fitz/proactiveti?style=flat-square)](https://github.com/brett-fitz/proactiveti/blob/main/LICENSE)
 [![Issues](https://img.shields.io/github/issues/brett-fitz/proactiveti?style=flat-square)](https://github.com/brett-fitz/proactiveti/issues)
@@ -7,11 +7,15 @@
 
 ## Overview
 
-`proactiveti` - Both the cli and package are named **proactiveti**. Poetry requires the package
-name to match the project name or it must be included in the packages section.
+`proactiveti` - Python package and cli for proactive threat intelligence.
 
+## :warning: Observables
 
-## Help :construction_worker:
+It is important to note that leads generated from lead modules are **OBSERVABLES AND NOT INDICATORS**. Prior to classifying an
+observable as an indicator, the observable should be verified as providers have a varying degree of latency. Furthermore, lead modules
+provide leads that may require additional analysis to identify a given service. 
+
+## :construction_worker: Help
 
 #### Join us in discussions
 I use GitHub Discussions to talk about all sorts of topics related to this repo.

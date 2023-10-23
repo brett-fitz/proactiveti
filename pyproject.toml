@@ -1,7 +1,7 @@
 [tool.poetry]
 name = "proactiveti"
 version = "0.1.0"
-description = "Python CLI Template"
+description = "Proactive Threat Intelligence."
 authors = ["Brett Fitzpatrick"]
 license = "MIT"
 readme = "README.md"
