@@ -1,0 +1,49 @@
+# Module Meta
+name: cobalt_strike-management-tls-certificate
+author: Brett Fitzpatrick
+description: >-
+  This query searches for services that serve a TLS certificate that 
+  resembles a Cobalt Strike management service.
+references:
+  - Me
+version: 1.0
+tags:
+  - Command and Control
+
+
+# Service Meta
+service:
+  name: Cobalt Strike
+  version: 3.x, 4.x
+
+confidence: High
+false_postives: >-
+  Negative.
+
+
+# Threat Meta
+threat:
+
+  software:
+    name: Cobalt Strike
+    id: S0154
+    reference: https://attack.mitre.org/software/S0154
+    type: MALWARE
+
+
+# Providers
+providers:
+
+  censys:
+    query: >-
+      services.tls.certificates.leaf_data.subject_dn="C=Earth, ST=Cyberspace, L=Somewhere, O=cobaltstrike, OU=AdvancedPenTesting, CN=Major Cobalt Strike" 
+      or services.tls.certificates.leaf_data.issuer_dn="C=Earth, ST=Cyberspace, L=Somewhere, O=cobaltstrike, OU=AdvancedPenTesting, CN=Major Cobalt Strike"
+    ip: true
+    reverse_dns: true
+    tls_certificate: false
+
+  shodan:
+    query: >-
+      ssl: "CN=Major Cobalt Strike"
+    ip: true
+    hostnames: true

@@ -25,11 +25,8 @@ threat: include('threat_meta', required=False)
 
 
 # Provider
-provider:
+providers:
   # Note: Please check the docs for the current list of supported providers!
-  name: enum('binaryedge', 'censys', 'driftnet', 'shodan', 'urlscan', required=True)
-  query: subset(map(), str())
-
   binaryedge: include('provider_binaryedge', required=False)
   censys: include('provider_censys', required=False)
   driftnet: include('provider_driftnet', required=False)
@@ -39,16 +36,19 @@ provider:
 ---
 # Providers
 censys:
+  query: str(required=True)
   # observable types to acquire
   ip: bool(required=False)                # default: true
   reverse_dns: bool(required=False)       # default: false
   tls_certificate: bool(required=False)   # default: false
 
 shodan:
+  query: str(required=True)
   ip: bool(required=False)                # default: true
   hostnames: bool(required=False)         # default: true
 
 urlscan:
+  query: str(required=True)
   task.url: bool(required=False)          # default: true
   task.hostname: bool(required=False)     # default: false
 

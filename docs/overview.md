@@ -1,15 +1,41 @@
 # Overview
 
-## What is PTI?
+## Threat Intelligence
+
+Before we get into what is proactive threat intelligence, lets first define what threat intelligence is and how we got here.
+
+> Cyber Threat Intelligence is “evidence-based knowledge about adversaries – their motives, intents, capabilities, enabling
+> environments and operations – focused on an event, series of events or trends, and providing a ‘decision’ advantage to the defender.”
+
+![ti-quadrants](img/ti-quadrants.png)
+
+When generating threat intelligence, we can bucket it into two groups: Proactive Threat Intelligence (PTI) and Reactive Threat
+Intelligence (RTI).
+
+**What is PTI?**
+
+Proactive threat intelligence is information that is material and can be used to inform decision making prior to a compromise. The goal of PTI is to detect threats before they occur and track adversaries before they initiate an intrusion.
+
+**What is RTI?**
+
+Reactive threat intelligence is information that is extracted post-compromise so we can learn from the TTPs observed. The goal is to learn as much as possible about a threat or adversary techniques, tactics, and procedures (TTPs) to inform stakeholders with actionable intelligence
+
 
 ### PTI Datasets
 
 #### Malware Repositories
 
+* Advantages: Acquire artifacts
+* Disadvantages: Requires an uploader (latency)
+
 #### Network Scanning
+
+* Advantages: Reduced latency
+* Disadvantages: Can be costly to analyze, parse and extract. 
 
 #### Domain Registration Data
 
+* Disadvantages: Costly to make sense of the data. No standardization and whois privacy. 
 
 ## PTI vs RTI
 

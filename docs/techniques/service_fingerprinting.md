@@ -128,6 +128,17 @@ organizations can still codify what algorithms, key-length, etc the actor chose 
     * https://www.rfc-editor.org/rfc/rfc8399
 
 
+**List of Observables**
+
+* Issuer DN: Information about the certificate authority that issued the certificate.
+* Subject DN: Information about the entity that was issued the certificate.
+* Extensions: Additional fields that extend the X.509 spec.
+* Validity Period: The dates from which and to which the certificate can be used.
+* Serial Number: The issuer-specific identifier of the certificate.
+* Public Key: The public key of the key pair that is associated with the certificate.
+* Signature Algorithm: The algorithm used to sign the certificate.
+* Signature Value: Bit string containing the digital signature.
+
 **Technique 1: Serial Number**
 
 The serial number of a certificate may be hardcoded and can therefore easily be identified.
