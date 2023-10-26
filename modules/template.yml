@@ -1,0 +1,46 @@
+# Module Meta
+name:
+author:
+description:
+  
+references:
+  - 
+version:
+tags:
+  - Command and Control
+
+
+# Service Meta
+service:
+  name:
+  version:
+
+confidence:
+false_postives:
+  Negative.
+
+
+# Threat Meta
+threat:
+
+  software:
+    name:
+    id:
+    reference:
+    type:
+
+
+# Providers
+providers:
+
+  censys:
+    query:
+    ip:
+    reverse_dns:
+    tls_certificate:
+
+  shodan:
+    query:
+      ssl:
+    ip:
+    hostnames:
