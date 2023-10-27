@@ -209,8 +209,8 @@ The format for the DN can be algorithmically computed to produce a fingerprint.
 
 * Hash the extensions in order
 
-!!! warning "LICENSE"
-    The above algorithm is not authorized for commerical use. Please contact me if you would like to license the above.
+!!! warning "LICENSE APACHE 2.0"
+    The above algorithm is licensed under the [APACHE 2.0 license](https://www.apache.org/licenses/LICENSE-2.0.txt). Please contact me if you have futher questions or open an issue ticket.
 
 **Technique 5: ZLint Hash**
 
@@ -236,5 +236,5 @@ Failed Lints
     w_sub_ca_aia_missing
 ```
 
-!!! warning "LICENSE"
-    The above algorithm is not authorized for commerical use. Please contact me if you would like to license the above.
+!!! warning "LICENSE APACHE 2.0"
+    The above algorithm is licensed under the [APACHE 2.0 license](https://www.apache.org/licenses/LICENSE-2.0.txt). Please contact me if you have futher questions or open an issue ticket.

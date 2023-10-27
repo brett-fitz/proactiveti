@@ -1,0 +1,50 @@
+# Module Meta
+name: responder-listener-http-default-header
+author: Brett Fitzpatrick
+description: >-
+  This lead module looks for the default header value for date.:
+    Date: Wed, 12 Sep 2012 13:06:55 GMT
+references:
+  - https://github.com/SpiderLabs/Responder/blob/master/packets.py#L208C1-L208C25
+version: 1.0
+tags:
+  - Command and Control
+
+
+# Service Meta
+service:
+  name: Responder
+  version: <= 2.3.0
+
+confidence: High
+false_postives: >-
+  N/A
+
+
+# Threat Meta
+threat:
+
+  software:
+    name: Responder
+    id: S0174
+    type: TOOL
+    reference: https://attack.mitre.org/software/S0174/
+
+
+# Providers
+providers:
+
+  # Note: Censys redacts date fields
+  # Example Service Banner:
+  # HTTP/1.1 401 Unauthorized\r\nServer: Microsoft-IIS/6.0\r\nDate: <REDACTED>\r\nContent-Type: text/html\r\nWWW-Authenticate: NTLM\r\nX-Powered-By: ASP.NET\r\nContent-Length: 0\r\n
+  #
+  # censys:
+  #   query:
+  #   ip:
+  #   reverse_dns:
+  #   tls_certificate:
+
+  shodan:
+    query: "Date: Wed, 12 Sep 2012 13:06:55 GMT"
+    ip: true
+    hostnames: true

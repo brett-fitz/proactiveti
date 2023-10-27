@@ -1,0 +1,49 @@
+# Module Meta
+name: cobalt_strike-listener-tls-certificate-default-serial_number
+author: Brett Fitzpatrick
+description: >-
+  This query searches for services that serve a TLS certificate that 
+  has the same default serial number used by a Cobalt Strike listener service.
+references:
+  - Me
+version: 1.0
+tags:
+  - Command and Control
+
+
+# Service Meta
+service:
+  name: Cobalt Strike
+  version: 3.x, 4.x
+
+confidence: High
+false_postives: >-
+  Negative.
+
+
+# Threat Meta
+threat:
+
+  software:
+    name: Cobalt Strike
+    id: S0154
+    reference: https://attack.mitre.org/software/S0154
+    type: MALWARE
+
+
+# Providers
+providers:
+
+  # Only works in the certificates search - no parsed serial number in hosts
+  # censys:
+  #   query: >-
+  #     parsed.serial_number="146473198"
+  #   ip: true
+  #   reverse_dns: true
+  #   tls_certificate: false
+
+  shodan:
+    query: >-
+      ssl.cert.serial:146473198
+    ip: true
+    hostnames: true

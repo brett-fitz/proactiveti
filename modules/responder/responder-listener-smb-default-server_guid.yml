@@ -1,0 +1,40 @@
+# Module Meta
+name: responder-listener-smb-default-server_guid
+author: Brett Fitzpatrick
+description: >-
+  This lead module looks for the default server guid used in smb negotiation.
+references:
+  - https://github.com/SpiderLabs/Responder/blob/master/packets.py
+version: 1.0
+tags:
+  - Command and Control
+
+
+# Service Meta
+service:
+  name: Responder
+  version: <= 2.3.0
+
+confidence: High
+false_postives: >-
+  N/A
+
+
+# Threat Meta
+threat:
+
+  software:
+    name: Responder
+    id: S0174
+    type: TOOL
+    reference: https://attack.mitre.org/software/S0174/
+
+
+# Providers
+providers:
+
+  censys:
+    query: services.smb.negotiation_log.server_guid="00000000000000000000000000000000ee85abf7eaf60c4f928192476deb76a9"
+    ip: true
+    reverse_dns: true
+    tls_certificate: false

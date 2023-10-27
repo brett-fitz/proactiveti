@@ -41,6 +41,5 @@ providers:
 
   shodan:
     query:
-      ssl:
     ip:
     hostnames:
