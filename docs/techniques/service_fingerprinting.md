@@ -12,12 +12,12 @@ is complete responsibility of the end-user.
 
 ### RTFM
 
-Read the fucking manual. When the service you are attempting to fingerprint is open-source, or the code is available (Cobalt Strike)... read the fucking code.
-Chances are there is zero/bad authentication or easy methods to fingerprint the service :wink:.
+Read the fucking manual. When the service you are attempting to fingerprint is open-source (Empire), or the code is available (Cobalt Strike)... read the fucking code.
+Chances are there is zero/bad authentication or easy methods fingerprint the service :wink:.
 
-### HTTP
+## HTTP
 
-#### Service Banner
+### Service Banner
 
 A banner grab for HTTP is essentially a GET request for the `/` resource. 
 
@@ -47,7 +47,7 @@ A banner grab for HTTP is essentially a GET request for the `/` resource.
     Some network scan providers will follow redirects. Make note of this behavior if it does occur and
     what the true location of resource that was served. 
 
-##### Headers & Cookies
+### Headers & Cookies
 
 **Technique 1: Unique Headers or Cookies**
 
@@ -109,13 +109,18 @@ By capturing the header key + value before and after, we have forced the search 
 
 Observe the capitilzation of specific headers. Some services will miss a capital or have all header keys lowered. This is another observable that can be used in a search.
 
-#### Response Body
+### Response Body
 
 Some services have unique response body's or have one to combination of attributes that can be used to fingerprint the service.
 
-#### Resource / Endpoint Identification
+### Resource / Endpoint Identification
 
-Finding unique resources or endpoints that the service implements is an extremely valuable 
+Finding unique resources or endpoints that the service implements is an extremely valuable technique for service fingerprinting.
+
+#### Tools
+
+* dirbuster (deprecated)
+* dirstalk
 
 ### TCP
 
@@ -129,11 +134,11 @@ A simple banner grab (read buffer after tcp connection established) and provide 
 BF7CAB464EFB
 ```
 
-### TLS 
+## TLS 
 
-#### Protocol Implementation
+### Protocol Implementation
 
-#### Server Certificate
+### Server Certificate
 
 The following techniques are for analyzing **self-signed** certifcates. Analyzing certificates produced by Certificate Authorities provide little to no intelligence however, mature
 organizations can still codify what algorithms, key-length, etc the actor chose to use for a specific provider (assuming they are configurable). This is called an infrastructure TTP.
