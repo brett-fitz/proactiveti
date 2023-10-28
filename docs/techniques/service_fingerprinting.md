@@ -1,5 +1,13 @@
 # Service Fingerprinting
 
+Service Fingerprinting is essentially varrying degrees of web application security testing and at times, exploitation of these services
+to tip you off on what the service is. 
+
+**:warning: DISCLAIMER**
+In cases of exploitation, some of your actions may be considered illegal and you should not perform
+these techniques without prior authorization from service owners, companies or relevant government agencies. The use of the techniques below
+is complete responsibility of the end-user.
+
 ## General Techniques
 
 ### RTFM
@@ -100,6 +108,14 @@ By capturing the header key + value before and after, we have forced the search 
 **Technique 5: Capitalization**
 
 Observe the capitilzation of specific headers. Some services will miss a capital or have all header keys lowered. This is another observable that can be used in a search.
+
+#### Response Body
+
+Some services have unique response body's or have one to combination of attributes that can be used to fingerprint the service.
+
+#### Resource / Endpoint Identification
+
+Finding unique resources or endpoints that the service implements is an extremely valuable 
 
 ### TCP
 
