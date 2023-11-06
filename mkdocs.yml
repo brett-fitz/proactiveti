@@ -44,3 +44,9 @@ nav:
   - Home: index.md
   - Setup: setup.md
   - Overview: overview.md
+  - Techniques:
+    - Service Fingerprinting: techniques/service_fingerprinting.md
+    - Service Clustering: techniques/service_clustering.md
+    - Censys: techniques/censys.md
+    - Shodan: techniques/shodan.md
+  - Querypedia: querypedia.md
