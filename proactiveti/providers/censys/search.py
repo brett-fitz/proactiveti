@@ -1,7 +1,7 @@
 """
 proactiveti.providers.censys module: search
 """
-from typing import List
+from typing import Dict, List
 import logging
 
 from censys.search import CensysHosts
@@ -14,22 +14,38 @@ __all__ = [
 logger = logging.getLogger(__name__)
 
 
+def _search(
+    query: str,
+    api_id: str = None,
+    api_secret: str = None,
+    **kwargs
+) -> Dict:
+    client = CensysHosts(api_id, api_secret)
+    return [
+        result
+        for page in client.search(query=query, pages=-1, **kwargs)
+        for result in page
+    ]
+
+
 def search(
     query: str,
     api_id: str,
     api_secret: str,
     reverse_dns: bool = False,
-    tls_certificate: bool = False
+    tls_certificate: bool = False,
+    full_log: bool = False
 ) -> List[str]:
     """
     Search Censys data for observables.
 
     Args:
-        query (str): The search query.
-        api_id (str): Your Censys API ID.
-        api_secret (str): Your Censys API secret.
-        reverse_dns (bool, optional): Allow Reverse DNS observables.
-        tls_certificate (bool, optional): Allow observables to be extracted from TLS certificates.
+        query: The search query.
+        api_id: Your Censys API ID.
+        api_secret: Your Censys API secret.
+        reverse_dns: Allow Reverse DNS observables.
+        tls_certificate: Allow observables to be extracted from TLS certificates.
+        full_log: Append the full log to each result record.
 
     Returns:
         List[str]: List of unique observables found in the search results.
@@ -44,7 +60,7 @@ def search(
         fields=[
             'dns.reverse_dns.names',
             'services.tls.certificates.leaf_data.names'
-        ]
+        ] if not full_log else None
     ):
         for result in page:
             # IP observable

@@ -2,9 +2,14 @@
 import asyncio
 from functools import wraps
 import logging
+from pathlib import Path
+from typing import List
 
 import click
 import coloredlogs
+import yaml
+
+from proactiveti.utils import validate_yaml
 
 
 __all__ = [
@@ -16,15 +21,10 @@ __all__ = [
 @click.option("-v", "--verbose", is_flag=True, default=False, help="Verbose logging")
 @click.help_option('-h', '--help')
 def cli(verbose: bool):
-    """Python CLI Core"""           # This is added as a header to the help output
+    """Threat Analysis CLI"""
+    # This is added as a header to the help output
     log_level = logging.DEBUG if verbose else logging.INFO
-    # Configure the module logger
-    # module_name = __name__.split(".", maxsplit=1)[0]
-    # module_log = logging.getLogger(module_name)
-    # module_log.propagate = False
-
-    # coloredlogs.install(logger=module_log, level=log_level, reconfigure=False)
-    coloredlogs.install(level=log_level)  # root logger
+    coloredlogs.install(level=log_level)
 
 
 def click_async(func):
@@ -37,3 +37,22 @@ def click_async(func):
         return asyncio.run(func(*args, **kwargs))
 
     return wrapper
+
+
+@cli.command()
+@click.argument("modules", type=click.STRING, nargs=-1, required=True)
+@click.option("-F", "--format", type=click.Choice(['json', 'csv']), default='json', help="Output file format: default json")
+def leads(
+    modules: List[str],
+    write_format: str
+):
+    """Execute lead modules and output observable files"""
+    for module in modules:
+        # load module
+        module = yaml.safe_load(Path(module).read_text('utf-8'))
+
+        # vaidate module with schema
+        validate_yaml(input_file=Path(module), schema_file=Path())
+        
+        # for each configured provider execute search query
+        
