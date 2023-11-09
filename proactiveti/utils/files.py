@@ -1,3 +1,64 @@
+"""
+proactiveti.utils module: files
+"""
+import os
+from typing import Dict, List
+
+import aiofiles
+import yaml
+
+
+def get_files(path: str, search: str = None) -> List[str]:
+    """Get a list of files in a directory and its subdirectories, optionally
+    filtered by a search term.
+
+    Args:
+        path (str): The path to the directory to search for files.
+        search (str, optional): If provided, only include files containing this search
+            term in their names. Defaults to None.
+
+    Returns:
+        List[str]: A list of file paths matching the search criteria.
+
+    Example:
+        Given a directory structure:
+        ```
+        /root
+            ├── dir1
+            │   ├── file1.txt
+            │   └── schema.yml
+            ├── dir2
+            │   ├── file2.txt
+            │   └── file3.txt
+            └── schema.yml
+        ```
+
+        The function call `get_files("/root", search="file")` would return:
+        ```
+        [
+            '/root/dir1/file1.txt',
+            '/root/dir2/file2.txt',
+            '/root/dir2/file3.txt'
+        ]
+        ```
+    """
+    all_files = []
+
+    for root, _dirs, files in os.walk(path):
+        for file in files:
+            # Skip files named 'schema.yml'
+            if file == 'schema.yml':
+                continue
+
+            # Check if a search term is provided
+            if not search:
+                all_files.append(os.path.join(root, file))
+            else:
+                # Include files containing the search term in their names
+                if search in file:
+                    all_files.append(os.path.join(root, file))
+
+    return all_files
 
 
 async def read_yaml(file: str) -> Dict:
@@ -26,8 +87,10 @@ async def read_yaml(file: str) -> Dict:
     async with aiofiles.open(file, mode='r') as yaml_file:
         return yaml.safe_load(await yaml_file.read())
 
+
 async def read_yaml_files(files: List[str]) -> List[Dict]:
-    """Reads multiple YAML files asynchronously and returns a list of parsed contents as dictionaries.
+    """Reads multiple YAML files asynchronously and returns a list of
+    parsed contents as dictionaries.
 
     Args:
         files (List[str]): A list of paths to the YAML files to be read.
