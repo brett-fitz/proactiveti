@@ -2,9 +2,9 @@
 proactiveti.providers.shodan module: search
 """
 import logging
-from typing import List
+from typing import Dict, List
 
-from shodan import Shodan
+from shodan import APIError, Shodan
 
 
 __all__ = [
@@ -17,42 +17,38 @@ logger = logging.getLogger(__name__)
 def search(
     query: str,
     api_key: str,
-    num_results: int = None,
-    hostnames: bool = False
-) -> List[str] | None:
+    limit: int = None
+) -> List[Dict] | None:
     """
-    Performs a shodan search and returns a list of observables.
+    Performs a shodan search and returns a list of results.
 
     Args:
-        query: Search query.
-        api_key: Shodan api key.
-        num_results: Limit the number of results returned.
-        hostnames: Include hostnames for the ip log in the returned list of observables.
+        query (str): Search query.
+        api_key (str): Shodan api key.
+        limit (int, optional): Limit the number of results processed. Defaults to None.
 
     Returns:
         A list of results or None.
     """
-    api = Shodan(api_key)
+    client = Shodan(api_key)
 
-    logger.info(f'Executing query: {query}')
-    result_count = api.count(query)['total']
-    if result_count == 0:
-        logger.warning(f'query: {query} returned 0 results')
+    # first get result count
+    try:
+        result_count = client.count(query)['total']
+    except APIError as error:
+        # soft failure here as we won't re-raise
+        logger.error(error)
         return None
 
-    logger.info(f'query: {query} returned {result_count} results')
-    results = []
-    for index, result in enumerate(api.search_cursor(query)):
-        # ip address
-        if num_results and index >= num_results:
+    if not result_count:
+        logger.warning(f'{query} produced no results')
+        return None
+
+    # enumerate results
+    results: List[Dict] = []
+    for index, result in enumerate(client.search_cursor(query)):
+        if limit and index >= limit:
             break
-        results.append(result['ip_str'])
+        results.append(result)
 
-        # hostnames
-        if hostnames and result.get('hostnames') and result['hostnames']:
-            for host in result['hostnames']:
-                results.append(host)
-
-    results = list(set(results))
-    logger.info(f'query: {query} produced {len(results)} observables')
     return results
