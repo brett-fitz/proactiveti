@@ -1,0 +1,44 @@
+# Module Meta
+name: stealc-listener-http-default-response-v1-5
+author: Brett Fitzpatrick
+description:
+  This module identifies the default response from the stealc HTTP listener (v1.5).
+references:
+  - https://t.me/stealc_changelog/24
+version: 1.0
+tags:
+  - Command and Control
+
+
+# Service Meta
+service:
+  name: stealc
+  version: 1.5.x
+
+confidence: Medium
+false_postives: >-
+  N/A
+
+
+# Threat Meta
+threat:
+
+  software:
+    name: stealc
+    type: MALWARE
+
+
+# Providers
+providers:
+
+  censys:
+    query: >-
+      services.http.response.body="<!DOCTYPE HTML PUBLIC \"-//IETF//DTD HTML 2.0//EN\"><html><head><title>404 Not Found</title></head><body><h1>Not Found</h1><p>The requested URL was not found on this server.</p><hr><address>Apache/2.4.* (Ubuntu) Server at *</address></body></html>"
+    ip: true
+    reverse_dns: true
+    tls_certificate: false
+
+  # shodan:
+  #   query: 
+  #   ip: true
+  #   hostnames: true

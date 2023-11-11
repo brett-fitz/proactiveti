@@ -1,0 +1,46 @@
+# Module Meta
+name: vidar-listener-tls-certificate-default-issuer
+author: Brett Fitzpatrick & @crep1x
+description:
+  This module detects the default issuer of the TLS certificate used by the Vidar C2 server.
+references:
+  - https://twitter.com/crep1x/status/1722660214669730107
+version:
+tags:
+  - Command and Control
+
+
+# Service Meta
+service:
+  name: Vidar
+  version: N/A
+
+confidence: High
+false_postives: >-
+  N/A
+
+
+# Threat Meta
+threat:
+
+  software:
+    name: Vidar
+    type: Malware
+
+
+# Providers
+providers:
+
+  censys:
+    # Note: while you can change this to be an AND query, the values of these RDNs are unique in itself. 
+    query: >-
+      services.tls.certificates.leaf_data.issuer.organization="StaticIP" or services.tls.certificates.leaf_data.issuer.organizational_unit="privateIP"
+    ip: true
+    reverse_dns: true
+    tls_certificate: false
+
+  shodan:
+    query: >-
+      ssl:"StaticIP" ssl:"privateIP"
+    ip: true
+    hostnames: true

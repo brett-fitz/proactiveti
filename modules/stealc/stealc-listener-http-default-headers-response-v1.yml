@@ -1,0 +1,48 @@
+# Module Meta
+name: stealc-listener-http-default-headers-response-v1
+author: Brett Fitzpatrick
+description: >-
+  This module detect stealc HTTP listener (v1) default headers response.
+references:
+  - https://blog.sekoia.io/stealc-a-copycat-of-vidar-and-raccoon-infostealers-gaining-in-popularity-part-1/#h-c2-servers
+version: 1.0
+tags:
+  - Command and Control
+
+
+# Service Meta
+service:
+  name: Stealc
+  version: 1.x
+
+confidence: High
+false_postives: >-
+  N/A
+
+
+# Threat Meta
+threat:
+
+  software:
+    name: stealc
+    type: MALWARE
+
+
+# Providers
+providers:
+
+  censys:
+    query: >-
+      services.banner_hashes="sha256:374eba5bab95305f34615282e11087b0a4bd68000ebec47904c2437e35b04cce" 
+      and services.http.response.body_hashes="sha256:19fc5dc87cc3cb277e89f8fcc8733968a1597ed54e3c1bffdd50ad8ab18aa654"
+    ip: true
+    reverse_dns: true
+    tls_certificate: false
+
+  shodan:
+    query: >-
+      "HTTP/1.1 200 OK Date:"
+      "GMT Server: Apache"
+      "(Ubuntu) Vary: Accept-Encoding Content-Length: 145 Content-Type: text/html; charset=UTF-8"
+    ip: true
+    hostnames: true

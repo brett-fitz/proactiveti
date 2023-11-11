@@ -1,0 +1,49 @@
+# Module Meta
+name:
+author:
+description:
+  
+references:
+  - 
+version:
+tags:
+  - Command and Control
+
+
+# Service Meta
+service:
+  name:
+  version:
+
+confidence:
+false_postives: >-
+  Negative.
+
+
+# Threat Meta
+threat:
+
+  software:
+    name: stealc
+    type:
+
+
+# Providers
+providers:
+
+  censys:
+    query: >-
+      services.banner_hashes="sha256:3da84e3b34e8ada459e76ee3d76215ac2d3188625c44270292afcf2efd9f1157" 
+      and services.http.response.body_hashes="sha256:d63a65cc2e7c4d99a80e905b159e38c27705ecc4a07b1d733bf5b1d3a4ebeed3"
+    ip: true
+    reverse_dns: true
+    tls_certificate: false
+
+  shodan:
+    query: >-
+      "HTTP/1.0 403 Forbidden Date:" 
+      "GMT Server: Apache/2.4.41 (Ubuntu) 
+      Content-Length: 144 Connection: close
+      Content-Type: text/html; charset=UTF-8"
+    ip: true
+    hostnames: true
