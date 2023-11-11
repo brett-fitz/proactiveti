@@ -1,0 +1,44 @@
+# Module Meta
+name: vidar-listener-detected
+author: Brett Fitzpatrick 
+description:
+  This module utilizes the given providers own detectors for Vidar listeners.
+references:
+  - N/A
+version: 1.0
+tags:
+  - Command and Control
+
+
+# Service Meta
+service:
+  name: Vidar
+  version: N/A
+
+confidence: High
+false_postives: >-
+  N/A
+
+
+# Threat Meta
+threat:
+
+  software:
+    name: Vidar
+    type: MALWARE
+
+
+# Providers
+providers:
+
+  censys:
+    query: >-
+      services.software.vendor="vidar" or services.software.product="vidar"
+    ip: true
+    reverse_dns: true
+    tls_certificate: false
+
+  # shodan:
+  #   query:
+  #   ip:
+  #   hostnames:
