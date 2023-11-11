@@ -1,21 +1,21 @@
 # Module Meta
-name:
-author:
-description:
-  
+name: stealc-listener-http-default-headers-response-v1-3-1
+author: Brett Fitzpatrick
+description: >-
+  This module detect stealc HTTP listener (v1.3.1) default headers response.
 references:
-  - 
-version:
+  - https://t.me/stealc_changelog/14
+version: 1.0
 tags:
   - Command and Control
 
 
 # Service Meta
 service:
-  name:
-  version:
+  name: stealc
+  version: 1.3.1
 
-confidence:
+confidence: High
 false_postives: >-
   Negative.
 
@@ -25,7 +25,7 @@ threat:
 
   software:
     name: stealc
-    type:
+    type: MALWARE
 
 
 # Providers

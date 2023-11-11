@@ -1,7 +1,7 @@
 # Module Meta
 name: vidar-listener-detected
 author: Brett Fitzpatrick 
-description:
+description: >-
   This module utilizes the given providers own detectors for Vidar listeners.
 references:
   - N/A

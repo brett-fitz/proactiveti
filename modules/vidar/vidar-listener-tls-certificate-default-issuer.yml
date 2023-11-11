@@ -1,11 +1,11 @@
 # Module Meta
 name: vidar-listener-tls-certificate-default-issuer
 author: Brett Fitzpatrick & @crep1x
-description:
+description: >-
   This module detects the default issuer of the TLS certificate used by the Vidar C2 server.
 references:
   - https://twitter.com/crep1x/status/1722660214669730107
-version:
+version: 1.0
 tags:
   - Command and Control
 
