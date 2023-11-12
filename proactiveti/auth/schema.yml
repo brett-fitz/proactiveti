@@ -1,0 +1,33 @@
+# Auth Schema
+
+aws: include('secrets_manager', required=False)
+
+providers:
+
+  # Note: Please check the docs for the current list of supported providers!
+  binaryedge: include('provider_binaryedge', required=False)
+  censys: include('provider_censys', required=False)
+  driftnet: include('provider_driftnet', required=False)
+  shodan: include('provider_shodan', required=False)
+  urlscan: include('provider_urlscan', required=False)
+
+---
+# AWS Secrets Manager
+secrets_manager:
+  profile: str(required=True)
+  region: str(required=True)
+
+# Providers
+# Note: It is recommended to use secrets manager so that secrets are not saved anywhere
+# and are only accessed at runtime.
+
+censys:
+  type: enum('env', 'secrets_manager', required=True)
+  api_id: str(required=False)
+  api_secret: str(required=False)
+  secret_name: str(required=False)
+
+shodan:
+  type: enum('env', 'secrets_manager', required=True)
+  api_key: str(required=False)
+  secret_name: str(required=False)

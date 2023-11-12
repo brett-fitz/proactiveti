@@ -1,0 +1,15 @@
+# Auth Template Example
+aws:
+  profile: default
+  region: us-east-1
+
+
+providers:
+
+  censys:
+    type: secrets_manager
+    secret_name: proactiveti/censys
+
+  shodan:
+    type: secrets_manager
+    secret_name: proactive/shodan
