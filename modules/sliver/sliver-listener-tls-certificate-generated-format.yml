@@ -1,0 +1,60 @@
+# Module Meta
+name: sliver-listener-tls-certificate-generated-format
+author: Brett Fitzpatrick
+description: >-
+  This lead module identifies certificates that are generated in the same format
+  as the default Sliver listener certificate.
+
+  How to differentiate Havoc and Sliver:
+  - Havoc generates a distinguished name and copies it for both the issuer and subject. Whereas
+    Sliver only fills in the subject distinguished name. 
+
+  Note: This query can be more prone to false positives then generated-v1,
+  and generated-v2.
+  
+  
+references:
+  - https://github.com/BishopFox/sliver/blob/master/server/certs/certs.go
+version: 1.0
+tags:
+  - Command and Control
+
+
+# Service Meta
+service:
+  name: Sliver
+  version: 1.x
+
+confidence: Low
+false_postives: >-
+  Certificates generated in the same format as the default Sliver listener certificate.
+
+
+# Threat Meta
+threat:
+
+  software:
+    name: Sliver
+    id: S0633
+    reference: https://attack.mitre.org/software/S0633/
+    type: MALWARE
+
+
+# Providers
+providers:
+
+  censys:
+    query: >-
+      same_service(
+        services.tls.certificates.leaf_data.subject_dn="C=*, ST=*, L=*, street=*, O=*, CN=*"
+        and
+        not services.tls.certificates.leaf_data.issuer: *
+      )
+    ip: true
+    reverse_dns: true
+    tls_certificate: true
+
+  # shodan:
+  #   query:
+  #   ip: true
+  #   hostnames: true

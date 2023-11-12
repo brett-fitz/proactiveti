@@ -1,0 +1,55 @@
+# Module Meta
+name: sliver-management-mtls-certificate-default-issuer-subject
+author: Brett Fitzpatrick
+description: >-
+  This lead module looks for the default issuer and subject values for the
+  management service's TLS certificate.
+
+  Note: This is a complete OpSec failure on the part of the operators. This service
+  should not be exposed to the internet.
+  
+references:
+  - https://github.com/BishopFox/sliver/blob/master/server/certs/operators.go
+version: 1.0
+tags:
+  - Command and Control
+
+
+# Service Meta
+service:
+  name: Sliver
+  version: 1.x
+
+confidence: High
+false_postives: >-
+  Very unlikely that a user generates a certificate with the same default values
+  of a Sliver management service.
+
+
+# Threat Meta
+threat:
+
+  software:
+    name: Sliver
+    id: S0633
+    reference: https://attack.mitre.org/software/S0633/
+    type: MALWARE
+
+
+# Providers
+providers:
+
+  censys:
+    query: >-
+      services.tls.certificates.leaf_data.issuer_dn="CN=operators" 
+      and services.tls.certificates.leaf_data.subject_dn="CN=multiplayer"
+    ip: true
+    reverse_dns: true
+    tls_certificate: false
+
+  shodan:
+    query: >-
+      ssl.cert.issuer.cn:"operators"
+      ssl.cert.subject.cn:"multiplayer"
+    ip: true
+    hostnames: true

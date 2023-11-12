@@ -11,8 +11,21 @@
 
 ## Responder
 
+{%
+   include-markdown "modules/responder/README.md"
+   heading-offset=1
+%}
 
 ## stealc
 
+{%
+   include-markdown "modules/stealc/README.md"
+   heading-offset=1
+%}
 
 ## Vidar
+
+{%
+   include-markdown "modules/vidar/README.md"
+   heading-offset=1
+%}
