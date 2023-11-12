@@ -1,4 +1,8 @@
-"""proactiveti.cli module: cli"""
+"""
+proactiveti.cli module: cli
+
+TODO: Handle authentication for providers
+"""
 import asyncio
 from functools import wraps
 import logging
@@ -10,6 +14,7 @@ import coloredlogs
 import yaml
 
 from proactiveti.utils import validate_yaml
+from proactiveti.providers import execute_search
 
 
 __all__ = [
@@ -53,6 +58,14 @@ def leads(
 
         # vaidate module with schema
         validate_yaml(input_file=Path(module), schema_file=Path())
-        
-        # for each configured provider execute search query
-        
+
+        # execute module
+        results = execute_search(module=module, transform_format=write_format)
+
+        # write results
+        with open(
+            f'{module["name"]}.{"json" if write_format == "ecs" else "txt"}',
+            'w',
+            encoding='utf-8'
+        ) as file:
+            file.write(results)
