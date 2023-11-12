@@ -1,0 +1,2 @@
+# Vidar (Info Stealer)
+

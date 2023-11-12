@@ -1,0 +1,49 @@
+# Module Meta
+name: stealc-listener-http-default-headers-response-v1-3-1
+author: Brett Fitzpatrick
+description: >-
+  This module detect stealc HTTP listener (v1.3.1) default headers response.
+references:
+  - https://t.me/stealc_changelog/14
+version: 1.0
+tags:
+  - Command and Control
+
+
+# Service Meta
+service:
+  name: stealc
+  version: 1.3.1
+
+confidence: High
+false_postives: >-
+  Negative.
+
+
+# Threat Meta
+threat:
+
+  software:
+    name: stealc
+    type: MALWARE
+
+
+# Providers
+providers:
+
+  censys:
+    query: >-
+      services.banner_hashes="sha256:3da84e3b34e8ada459e76ee3d76215ac2d3188625c44270292afcf2efd9f1157" 
+      and services.http.response.body_hashes="sha256:d63a65cc2e7c4d99a80e905b159e38c27705ecc4a07b1d733bf5b1d3a4ebeed3"
+    ip: true
+    reverse_dns: true
+    tls_certificate: false
+
+  shodan:
+    query: >-
+      "HTTP/1.0 403 Forbidden Date:" 
+      "GMT Server: Apache/2.4.41 (Ubuntu) 
+      Content-Length: 144 Connection: close
+      Content-Type: text/html; charset=UTF-8"
+    ip: true
+    hostnames: true
