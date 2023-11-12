@@ -67,12 +67,12 @@ Proxy
 **Censys**
 
 ```
-"HTTP/1.1 404 Not Found Date:" 
-"GMT Server: Apache Content-Length: 0 Keep-Alive: timeout=10, max=100 Connection: Keep-Alive Content-Type: text/plain"
+services.banner_hashes="sha256:6b7480985c13791b2f64e08e83eeac1c5aae86eb571dd2a7fe6d158e8b57abe0"
 ```
 
 **Shodan**
 
 ```
-product:"Cobalt Strike Beacon"
+"HTTP/1.1 404 Not Found Date:" 
+"GMT Server: Apache Content-Length: 0 Keep-Alive: timeout=10, max=100 Connection: Keep-Alive Content-Type: text/plain"
 ```
