@@ -12,7 +12,7 @@ tags:
 
 # Service Meta
 service:
-  name: Stealc
+  name: stealc
   version: 1.x
 
 confidence: High
