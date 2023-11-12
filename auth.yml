@@ -12,4 +12,4 @@ providers:
 
   shodan:
     type: secrets_manager
-    secret_name: proactive/shodan
+    secret_name: proactiveti/shodan
