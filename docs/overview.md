@@ -65,3 +65,4 @@ Proactive Threat Intelligence vs Reactive Threat Intelligence
 * [New RisePro Stealer distributed by the prominent PrivateLoader](https://blog.sekoia.io/new-risepro-stealer-distributed-by-the-prominent-privateloader/)
 * [Darkcomet Hacking the hacker](https://www.techanarchy.net/darkcomet-hacking-the-hacker/)
 * [BlueDelta Exploits Ukrainian Government Roundcube Mail Servers to Support Espionage Activities](https://go.recordedfuture.com/hubfs/reports/cta-2023-0620.pdf)
+* [2023 Adversary Infrastructure Report](https://go.recordedfuture.com/hubfs/reports/cta-2024-1209.pdf)
