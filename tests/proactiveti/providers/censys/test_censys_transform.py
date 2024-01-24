@@ -1,7 +1,8 @@
 """proactiveti.providers.censys.transform unit tests."""
-
 import pytest
+
 from proactiveti.providers.censys.transform import transform_to_ecs, transform_to_observables
+
 
 @pytest.fixture
 def results():

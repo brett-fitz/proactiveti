@@ -5,14 +5,19 @@ TODO
 - Extract tls_certificate observables - need to warn user about FPs or manage
 via misp-warninglists, etc
 
-- Currently we only support extracting ovservables from the 'matched_services'
+- Currently we only support extracting observables from the 'matched_services'
 which requires a paid license. We should also support extracting observables from
 the 'services' field which is available to free users.
 
 """
 from copy import deepcopy
+import json
 import logging
 from typing import Dict, List, Set
+
+from stix2 import Bundle, DomainName, IPv4Address, IPv6Address, Indicator, Relationship
+
+from proactiveti.utils.validators import is_domain_or_ip
 
 
 __all__ = [
@@ -67,12 +72,6 @@ def transform_to_ecs(
                 'port': 80
             },
             'censys': {...},
-            'location': {
-                'coordinates': {
-                    'lat': 37.7749,
-                    'lon': -122.4194
-                }
-            }
         }
         or
         {
@@ -83,28 +82,22 @@ def transform_to_ecs(
                 'port': 80
             },
             'censys': {...},
-            'location': {
-                'coordinates': {
-                    'lat': 37.7749,
-                    'lon': -122.4194
-                }
-            }
         }
 
     Note:
         The 'location' coordinates are translated to the geo_point format required by ECS.
     """
-    # Translate coordinates to geo_point format
+
+    transformed_results: List[Dict] = []
+
     for result in results:
+        # Translate coordinates to geo_point format
         if result.get('location', {}).get('coordinates'):
             result['location']['coordinates'] = {
                 'lat': result['location']['coordinates']['latitude'],
                 'lon': result['location']['coordinates']['longitude']
             }
 
-    transformed_results: List[Dict] = []
-
-    for result in results:
         for matched_service in result['matched_services']:
             # ip address
             transformed_results.append(
@@ -199,3 +192,52 @@ def transform_to_observables(
                     observables |= set(service['tls']['certificates']['leaf_data']['names'])
 
     return list(observables)
+
+
+def transform_to_stix_observables(
+    results: List[Dict],
+    reverse_dns: bool = False,
+    tls_certificate: bool = False,
+) -> List[Dict]:
+    """Transforms Censys search results into a list of STIX observables.
+
+    Args:
+        results (List[Dict]): A list of dictionaries containing Censys search results.
+        reverse_dns (bool, optional): Whether to include DNS observables via reverse DNS
+            in the transformed list. Defaults to False.
+        tls_certificate (bool, optional): Whether to include TLS observables in the
+            transformed list. Defaults to False.
+
+    Returns:
+        List[Dict]: A list of unique observables extracted from the input Censys search results.
+
+    """
+    observables: List[Dict] = []
+    for observable in transform_to_observables(results, reverse_dns, tls_certificate):
+        _type = is_domain_or_ip(observable)
+        if _type == "domain-name":
+            observables.append(json.loads(DomainName(value=observable).serialize()))
+        elif _type == "ipv4-addr":
+            observables.append(json.loads(IPv4Address(value=observable).serialize()))
+        elif _type == "ipv6-addr":
+            observables.append(json.loads(IPv6Address(value=observable).serialize()))
+        else:
+            logger.warning(f"Unknown observable type: {_type} for {observable}")
+    return observables
+
+
+def transform_to_stix_indicators(
+    results: List[Dict],
+    module: Dict
+) -> List[Dict]:
+    """Transforms Censys search results into a list of STIX indicators.
+
+    Args:
+        results (List[Dict]): A list of dictionaries containing Censys search results.
+        module (Dict): The module configuration.
+
+    Returns:
+        List[Dict]: A list of STIX indicators extracted from the input Censys search results.
+
+    """
+    pass
