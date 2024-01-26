@@ -3,6 +3,7 @@ proactiveti.auth.secrets_manager module: secrets_manager
 """
 from __future__ import annotations
 import base64
+from functools import lru_cache
 import json
 import logging
 from typing import TYPE_CHECKING, Dict, List, Union
@@ -71,6 +72,7 @@ def get_secret(secret_name: str) -> Union[str, bytes, List, Dict]:
     return secret
 
 
+@lru_cache(maxsize=None)
 def get_censys_secret() -> Dict[str, str]:
     """Retrieve the Censys API key from the Secrets Manager.
 
@@ -86,6 +88,7 @@ def get_censys_secret() -> Dict[str, str]:
     return get_secret(CENSYS_SECRET_NAME)
 
 
+@lru_cache(maxsize=None)
 def get_shodan_secret() -> Dict[str, str]:
     """Retrieve the Shodan API key from the Secrets Manager.
 
