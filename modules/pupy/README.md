@@ -22,3 +22,21 @@ Anomalies to report:
 
 Hardcoded in the code: https://github.com/n1nj4sec/pupy/blob/a5d766ea81fdfe3bc2c38c9bdaf10e9b75af3b39/pupy/webstatic/nginx_index.html
 
+## HTTPS Listener
+
+### TLS Certificate
+
+* Hardcoded Organizational Unit (OU) RDN value `CONTROL` https://github.com/n1nj4sec/pupy/blob/a5d766ea81fdfe3bc2c38c9bdaf10e9b75af3b39/pupy/pupylib/PupyCredentials.py#L232
+* Harcoded certificate serial number: `2`
+
+**Censys**
+
+```text
+services.tls.certificates.leaf_data.subject.organizational_unit="CONTROL"
+```
+
+**Shodan**
+
+```text
+ssl.cert.serial:2 ssl:"OU=CONTROL"
+```
