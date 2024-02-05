@@ -12,7 +12,7 @@ is complete responsibility of the end-user.
 
 ### RTFM
 
-Read the fucking manual. When the service you are attempting to fingerprint is open-source (Empire), or the code is available (Cobalt Strike)... read the fucking code.
+Read the fucking manual. When the service you are attempting to fingerprint is open-source (Empire), or the code is available (Cobalt Strike)... read the code.
 Chances are there is zero/bad authentication or easy methods fingerprint the service :wink:.
 
 ## HTTP
