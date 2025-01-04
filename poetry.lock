@@ -2677,17 +2677,20 @@ files = [
 
 [[package]]
 name = "yamale"
-version = "5.2.1"
+version = "6.0.0"
 description = "A schema and validator for YAML."
 optional = false
 python-versions = ">=3.8"
 files = [
-    {file = "yamale-5.2.1-py3-none-any.whl", hash = "sha256:e44cd30cf3055ee4b34c1c71d6fe35490a127dcbd36f82f27859d105a9989922"},
-    {file = "yamale-5.2.1.tar.gz", hash = "sha256:19bbe713d588f07177bc519a46070c0793ed126ea37f425a76055b99703f835a"},
+    {file = "yamale-6.0.0-py3-none-any.whl", hash = "sha256:828c6cf2023101ec97d2759dfdc507e04ecfc0c6d39d500c00c37ec895ada53b"},
+    {file = "yamale-6.0.0.tar.gz", hash = "sha256:60be681f35e4939320b89de0d6f187ee0e5479ae7f7286b7f17f0859ddee4a66"},
 ]
 
 [package.dependencies]
 pyyaml = "*"
+
+[package.extras]
+ruamel = ["ruamel.yaml"]
 
 [[package]]
 name = "zipp"
@@ -2711,4 +2714,4 @@ type = ["pytest-mypy"]
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.9"
-content-hash = "4d86ff8701e2ea3aa348ce480181dd385b34bc32ffa2df763d6367e09774d6d2"
+content-hash = "39a3d0e2e2fcb3edbab55e8ec3b6d87aa870155f3ac31412d8c2a7b7323ba4b2"
