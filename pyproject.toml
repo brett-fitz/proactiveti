@@ -7,7 +7,7 @@ license = "MIT"
 readme = "README.md"
 
 [tool.poetry.dependencies]
-python = "^3.9"
+python = "^3.13.2"
 click = "^8.1.7"
 coloredlogs = "^15.0.1"
 censys = "^2.2.9"
