@@ -39,7 +39,7 @@ mkdocstrings = "^0.24.0"
 mkdocs-material = "^9.4.12"
 mkdocs-minify-plugin = "^0.7.1"
 mkdocs-table-reader-plugin = "^3.1.0"
-mkdocs-include-markdown-plugin = "^6.0.4"
+mkdocs-include-markdown-plugin = "^7.1.5"
 
 [tool.poetry.scripts]
 proactiveti = "proactiveti.cli.cli:cli"
