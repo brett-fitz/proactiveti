@@ -18,7 +18,7 @@ boto3 = "^1.29.6"
 mypy-boto3-secretsmanager = "^1.29.0"
 stix2 = "^3.0.1"
 validators = "^0.22.0"
-yamale = "^5.0.0"
+yamale = "^6.0.0"
 
 
 [tool.poetry.group.dev.dependencies]
