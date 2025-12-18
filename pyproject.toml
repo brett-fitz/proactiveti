@@ -8,38 +8,38 @@ readme = "README.md"
 
 [tool.poetry.dependencies]
 python = "^3.9"
-click = "^8.1.7"
+click = "^8.3.1"
 coloredlogs = "^15.0.1"
-censys = "^2.2.9"
-shodan = "^1.30.1"
-pyyaml = "^6.0.1"
+censys = "^2.2.19"
+shodan = "^1.31.0"
+pyyaml = "^6.0.3"
 aiofiles = "^24.1.0"
-boto3 = "^1.29.6"
-mypy-boto3-secretsmanager = "^1.29.0"
+boto3 = "^1.42.12"
+mypy-boto3-secretsmanager = "^1.42.8"
 stix2 = "^3.0.1"
-validators = "^0.22.0"
-yamale = "^6.0.0"
+validators = "^0.35.0"
+yamale = "^6.1.0"
 
 
 [tool.poetry.group.dev.dependencies]
-pylint = "^3.0.2"
-ipython = "^8.18.0"
-ipykernel = "^6.26.0"
-pytest = "^8.0.0"
+pylint = "^3.3.9"
+ipython = "^8.37.0"
+ipykernel = "^6.31.0"
+pytest = "^8.4.2"
 
 
 [tool.poetry.group.test.dependencies]
-pytest = "^8.0.0"
-pytest-cov = "^6.0.0"
+pytest = "^8.4.2"
+pytest-cov = "^6.3.0"
 
 
 [tool.poetry.group.docs.dependencies]
-mkdocs = "^1.5.3"
-mkdocstrings = "^0.24.0"
-mkdocs-material = "^9.4.12"
-mkdocs-minify-plugin = "^0.7.1"
+mkdocs = "^1.6.1"
+mkdocstrings = "^0.30.1"
+mkdocs-material = "^9.7.1"
+mkdocs-minify-plugin = "^0.8.0"
 mkdocs-table-reader-plugin = "^3.1.0"
-mkdocs-include-markdown-plugin = "^7.1.5"
+mkdocs-include-markdown-plugin = "^7.2.0"
 
 [tool.poetry.scripts]
 proactiveti = "proactiveti.cli.cli:cli"
