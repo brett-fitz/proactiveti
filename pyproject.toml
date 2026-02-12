@@ -23,7 +23,7 @@ yamale = "^6.0.0"
 
 [tool.poetry.group.dev.dependencies]
 pylint = "^3.0.2"
-ipython = "^8.18.0"
+ipython = "^9.10.0"
 ipykernel = "^6.26.0"
 pytest = "^8.0.0"
 
