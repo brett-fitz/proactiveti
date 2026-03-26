@@ -25,11 +25,11 @@ yamale = "^6.0.0"
 pylint = "^3.0.2"
 ipython = "^8.18.0"
 ipykernel = "^6.26.0"
-pytest = "^8.0.0"
+pytest = "^9.0.2"
 
 
 [tool.poetry.group.test.dependencies]
-pytest = "^8.0.0"
+pytest = "^9.0.2"
 pytest-cov = "^6.0.0"
 
 
